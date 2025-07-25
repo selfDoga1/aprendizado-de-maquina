@@ -67,10 +67,44 @@ def evaluate_model(model, x, y, metric_name="RMSE"):
     return rmse_scores, r2_scores
 
 
-def repeated_hyperparam_search(x, y, n_repeats=30, n_iter=20, model=None, param_dist=None, model_name="Linear Regression"):
-    scores = []
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import RandomizedSearchCV, KFold
 
-    print(f"{model_name}")
+import os
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import RandomizedSearchCV, KFold
+
+
+import os
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import RandomizedSearchCV, KFold
+
+import os
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import RandomizedSearchCV, KFold
+import joblib
+
+def repeated_hyperparam_search(
+    x, y,
+    n_repeats=30, n_iter=20,
+    model=None, param_dist=None,
+    model_name="Linear Regression"
+):
+    scores = []
+    best_score_overall = -float('inf')
+    best_params_overall = None
+    best_iteration = None
+    best_model_overall = None
+    all_results = []
+
+    # Garante que a pasta results/ exista
+    os.makedirs("results", exist_ok=True)
+
+    print(f"\n{model_name}")
     for i in range(n_repeats):
         print(f"Repetição {i + 1} de {n_repeats}")
         cv = KFold(n_splits=5, shuffle=True, random_state=i)
@@ -85,12 +119,69 @@ def repeated_hyperparam_search(x, y, n_repeats=30, n_iter=20, model=None, param_
             verbose=0,
         )
         search.fit(x, y)
-        scores.append(search.best_score_)
+        score = search.best_score_
+        params = search.best_params_
 
-    print(f"\nR² médio nas {n_repeats} repetições: {np.mean(scores):.4f}")
-    print(f"Desvio padrão: {np.std(scores):.4f}")
+        scores.append(score)
+        all_results.append({
+            "Repetição": i + 1,
+            "R²": round(score, 4),
+            **params
+        })
 
-    return scores
+        if score > best_score_overall:
+            best_score_overall = score
+            best_params_overall = params
+            best_iteration = i + 1
+            best_model_overall = search.best_estimator_  # Salva o modelo treinado
+
+    r2_mean = np.mean(scores)
+    r2_std = np.std(scores)
+
+    print(f"\nR² médio nas {n_repeats} repetições: {r2_mean:.4f}")
+    print(f"Desvio padrão: {r2_std:.4f}")
+    print(f"Melhor R² encontrado: {best_score_overall:.4f} (na repetição {best_iteration})")
+    print(f"Melhores hiperparâmetros: {best_params_overall}")
+
+    # Tabela com os resultados por repetição
+    df_all = pd.DataFrame(all_results)
+
+    # Adiciona linha com média
+    df_all.loc[len(df_all.index)] = {
+        "Repetição": "Média",
+        "R²": round(r2_mean, 4),
+        **{k: best_params_overall.get(k, "") for k in best_params_overall}
+    }
+
+    # Adiciona linha com desvio padrão
+    df_all.loc[len(df_all.index)] = {
+        "Repetição": "Desvio Padrão",
+        "R²": round(r2_std, 4),
+        **{k: "" for k in best_params_overall}
+    }
+
+    r2_best = round(best_score_overall, 4)
+
+    # Cria seção destacada com os melhores hiperparâmetros
+    best_section = pd.DataFrame([{
+        "Repetição": f"Melhor ({best_iteration})",
+        "R²": r2_best,
+        **best_params_overall
+    }])
+
+    # Escreve as duas seções no Excel, uma abaixo da outra com espaçamento
+    with pd.ExcelWriter(f"results/{model_name}.xlsx", engine="openpyxl", mode="w") as writer:
+        df_all.to_excel(writer, sheet_name="Resultados", index=False, startrow=0)
+        best_section.to_excel(writer, sheet_name="Resultados", index=False, startrow=len(df_all) + 3)
+
+    # Salva o melhor modelo em disco para reutilização
+    joblib.dump(best_model_overall, f"models/{model_name}_best_model.joblib")
+    print(f"Melhor modelo salvo em 'models/{model_name}_best_model.joblib'")
+
+    # Retorna as métricas e o melhor modelo treinado
+    return r2_mean, r2_std, r2_best
+
+
 
 
 def run_polynomial_search(x, y, degrees=None, n_repeats=5):
