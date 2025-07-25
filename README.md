@@ -89,37 +89,37 @@ O conjunto de dados contém informações sobre estudantes do ensino médio em P
 
 ### 🔢 Atributos
 
-| Atributo     | Descrição                                     | Valores Possíveis (com tradução)                        |
-|--------------|-----------------------------------------------|----------------------------------------------------------|
-| `school`     | Escola                                         | `GP` (Gabriel Pereira), `MS` (Mousinho da Silveira)     |
-| `sex`        | Sexo                                           | `F` (feminino), `M` (masculino)                         |
-| `age`        | Idade                                          | 15 a 22                                                  |
-| `address`    | Tipo de endereço                              | `U` (urbano), `R` (rural)                               |
-| `famsize`    | Tamanho da família                             | `LE3` (≤ 3 membros), `GT3` (> 3 membros)                |
-| `Pstatus`    | Estado civil dos pais                          | `T` (juntos), `A` (separados)                           |
-| `Medu` / `Fedu` | Escolaridade da mãe/pai                    | 0: nenhuma, 1: primário (4ª série), 2: 5ª–9ª série, 3: ensino médio, 4: superior |
+| Atributo     | Descrição                                     | Valores Possíveis                                                                                                    |
+|--------------|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| `school`     | Escola                                         | `GP` (Gabriel Pereira), `MS` (Mousinho da Silveira)                                                                  |
+| `sex`        | Sexo                                           | `F` (feminino), `M` (masculino)                                                                                      |
+| `age`        | Idade                                          | 15 a 22                                                                                                              |
+| `address`    | Tipo de endereço                              | `U` (urbano), `R` (rural)                                                                                            |
+| `famsize`    | Tamanho da família                             | `LE3` (≤ 3 membros), `GT3` (> 3 membros)                                                                             |
+| `Pstatus`    | Estado civil dos pais                          | `T` (juntos), `A` (separados)                                                                                        |
+| `Medu` / `Fedu` | Escolaridade da mãe/pai                    | 0: nenhuma, 1: primário (4ª série), 2: 5ª–9ª série, 3: ensino médio, 4: superior                                     |
 | `Mjob` / `Fjob` | Profissão da mãe/pai                       | `teacher` (professor), `health` (área da saúde), `services` (serviço público), `at_home` (em casa), `other` (outros) |
-| `reason`     | Motivo da escolha da escola                   | `home` (proximidade), `reputation` (reputação), `course` (curso preferido), `other` (outros) |
-| `guardian`   | Responsável legal                             | `mother` (mãe), `father` (pai), `other` (outro)         |
-| `traveltime` | Tempo de deslocamento casa–escola             | 1: <15min, 2: 15–30min, 3: 30min–1h, 4: >1h             |
-| `studytime`  | Tempo semanal de estudo                       | 1: <2h, 2: 2–5h, 3: 5–10h, 4: >10h                      |
-| `failures`   | Nº de reprovações anteriores                  | 0 a 4 (sendo 4 = 4 ou mais reprovações)                |
-| `schoolsup`  | Apoio educacional extra                       | `yes` (sim), `no` (não)                                 |
-| `famsup`     | Apoio educacional da família                  | `yes` (sim), `no` (não)                                 |
-| `paid`       | Aulas particulares pagas                      | `yes` (sim), `no` (não)                                 |
-| `activities` | Participa de atividades extracurriculares     | `yes` (sim), `no` (não)                                 |
-| `nursery`    | Frequentou pré-escola                         | `yes` (sim), `no` (não)                                 |
-| `higher`     | Deseja cursar o ensino superior               | `yes` (sim), `no` (não)                                 |
-| `internet`   | Acesso à internet em casa                     | `yes` (sim), `no` (não)                                 |
-| `romantic`   | Está em relacionamento amoroso                | `yes` (sim), `no` (não)                                 |
-| `famrel`     | Relação familiar                              | 1 (muito ruim) a 5 (excelente)                          |
-| `freetime`   | Tempo livre após a escola                     | 1 (muito pouco) a 5 (muito)                             |
-| `goout`      | Frequência de saídas com amigos               | 1 (quase nunca) a 5 (frequente)                         |
-| `Dalc`       | Consumo de álcool durante a semana            | 1 (muito baixo) a 5 (muito alto)                        |
-| `Walc`       | Consumo de álcool no fim de semana            | 1 (muito baixo) a 5 (muito alto)                        |
-| `health`     | Estado de saúde atual                         | 1 (muito ruim) a 5 (muito bom)                          |
-| `absences`   | Faltas escolares                              | 0 a 93                                                  |
-| `G1`, `G2`, `G3` | Notas dos períodos escolares             | 0 a 20 (sendo `G3` a **nota final**, usada como alvo)  |
+| `reason`     | Motivo da escolha da escola                   | `home` (proximidade), `reputation` (reputação), `course` (curso preferido), `other` (outros)                         |
+| `guardian`   | Responsável legal                             | `mother` (mãe), `father` (pai), `other` (outro)                                                                      |
+| `traveltime` | Tempo de deslocamento casa–escola             | 1: <15min, 2: 15–30min, 3: 30min–1h, 4: >1h                                                                          |
+| `studytime`  | Tempo semanal de estudo                       | 1: <2h, 2: 2–5h, 3: 5–10h, 4: >10h                                                                                   |
+| `failures`   | Nº de reprovações anteriores                  | 0 a 4 (sendo 4 = 4 ou mais reprovações)                                                                              |
+| `schoolsup`  | Apoio educacional extra                       | `yes` (sim), `no` (não)                                                                                              |
+| `famsup`     | Apoio educacional da família                  | `yes` (sim), `no` (não)                                                                                              |
+| `paid`       | Aulas particulares pagas                      | `yes` (sim), `no` (não)                                                                                              |
+| `activities` | Participa de atividades extracurriculares     | `yes` (sim), `no` (não)                                                                                              |
+| `nursery`    | Frequentou pré-escola                         | `yes` (sim), `no` (não)                                                                                              |
+| `higher`     | Deseja cursar o ensino superior               | `yes` (sim), `no` (não)                                                                                              |
+| `internet`   | Acesso à internet em casa                     | `yes` (sim), `no` (não)                                                                                              |
+| `romantic`   | Está em relacionamento amoroso                | `yes` (sim), `no` (não)                                                                                              |
+| `famrel`     | Relação familiar                              | 1 (muito ruim) a 5 (excelente)                                                                                       |
+| `freetime`   | Tempo livre após a escola                     | 1 (muito pouco) a 5 (muito)                                                                                          |
+| `goout`      | Frequência de saídas com amigos               | 1 (quase nunca) a 5 (frequente)                                                                                      |
+| `Dalc`       | Consumo de álcool durante a semana            | 1 (muito baixo) a 5 (muito alto)                                                                                     |
+| `Walc`       | Consumo de álcool no fim de semana            | 1 (muito baixo) a 5 (muito alto)                                                                                     |
+| `health`     | Estado de saúde atual                         | 1 (muito ruim) a 5 (muito bom)                                                                                       |
+| `absences`   | Faltas escolares                              | 0 a 93                                                                                                               |
+| `G1`, `G2`, `G3` | Notas dos períodos escolares             | 0 a 20 (sendo `G3` a **nota final**, usada como alvo)                                                                |
 
 
 ### 🧪 Dados Fictícios Utilizados nas Predições
