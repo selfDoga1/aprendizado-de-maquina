@@ -187,11 +187,14 @@ Foram realizadas predições para três estudantes fictícios utilizando os mode
 
 ## 📚 Referências
 
-- James et al. (2021). *An Introduction to Statistical Learning*
-- Hastie et al. (2009). *The Elements of Statistical Learning*
-- Breiman (2001). *Random Forests*
-- Smola & Schölkopf (2004). *Support Vector Regression*
-- Cortez & Silva (2008). *Student Performance Dataset*
+### 🧠 Artigos e Fontes Online
+
+- Cao, Y., & Wang, X. (2021). *Support Vector Regression*. Disponível em: [https://www.ncbi.nlm.nih.gov/books/NBK583961](https://www.ncbi.nlm.nih.gov/books/NBK583961)
+- IBM Corporation (2023). *Ridge Regression*. Disponível em: [https://www.ibm.com/br-pt/think/topics/ridge-regression](https://www.ibm.com/br-pt/think/topics/ridge-regression)
+- IBM Corporation (2024). *Lasso Regression*. Disponível em: [https://www.ibm.com/br-pt/think/topics/lasso-regression](https://www.ibm.com/br-pt/think/topics/lasso-regression)
+- Corporate Finance Institute (2023). *Elastic Net*. Disponível em: [https://corporatefinanceinstitute.com/resources/data-science/elastic-net](https://corporatefinanceinstitute.com/resources/data-science/elastic-net)
+- IBM Corporation (2021). *Decision Trees*. Disponível em: [https://www.ibm.com/br-pt/think/topics/decision-trees](https://www.ibm.com/br-pt/think/topics/decision-trees)
+- IBM Corporation (n.d.). *Random Forest*. Disponível em: [https://www.ibm.com/br-pt/think/topics/random-forest](https://www.ibm.com/br-pt/think/topics/random-forest)
 
 ## 👨‍💻 Autores
 
