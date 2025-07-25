@@ -89,37 +89,41 @@ O conjunto de dados contém informações sobre estudantes do ensino médio em P
 
 ### 🔢 Atributos
 
-| Atributo     | Descrição                                     | Valores Possíveis                                                                                                    |
-|--------------|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| `school`     | Escola                                         | `GP` (Gabriel Pereira), `MS` (Mousinho da Silveira)                                                                  |
-| `sex`        | Sexo                                           | `F` (feminino), `M` (masculino)                                                                                      |
-| `age`        | Idade                                          | 15 a 22                                                                                                              |
-| `address`    | Tipo de endereço                              | `U` (urbano), `R` (rural)                                                                                            |
-| `famsize`    | Tamanho da família                             | `LE3` (≤ 3 membros), `GT3` (> 3 membros)                                                                             |
-| `Pstatus`    | Estado civil dos pais                          | `T` (juntos), `A` (separados)                                                                                        |
-| `Medu` / `Fedu` | Escolaridade da mãe/pai                    | 0: nenhuma, 1: primário (4ª série), 2: 5ª–9ª série, 3: ensino médio, 4: superior                                     |
-| `Mjob` / `Fjob` | Profissão da mãe/pai                       | `teacher` (professor), `health` (área da saúde), `services` (serviço público), `at_home` (em casa), `other` (outros) |
-| `reason`     | Motivo da escolha da escola                   | `home` (proximidade), `reputation` (reputação), `course` (curso preferido), `other` (outros)                         |
-| `guardian`   | Responsável legal                             | `mother` (mãe), `father` (pai), `other` (outro)                                                                      |
-| `traveltime` | Tempo de deslocamento casa–escola             | 1: <15min, 2: 15–30min, 3: 30min–1h, 4: >1h                                                                          |
-| `studytime`  | Tempo semanal de estudo                       | 1: <2h, 2: 2–5h, 3: 5–10h, 4: >10h                                                                                   |
-| `failures`   | Nº de reprovações anteriores                  | 0 a 4 (sendo 4 = 4 ou mais reprovações)                                                                              |
-| `schoolsup`  | Apoio educacional extra                       | `yes` (sim), `no` (não)                                                                                              |
-| `famsup`     | Apoio educacional da família                  | `yes` (sim), `no` (não)                                                                                              |
-| `paid`       | Aulas particulares pagas                      | `yes` (sim), `no` (não)                                                                                              |
-| `activities` | Participa de atividades extracurriculares     | `yes` (sim), `no` (não)                                                                                              |
-| `nursery`    | Frequentou pré-escola                         | `yes` (sim), `no` (não)                                                                                              |
-| `higher`     | Deseja cursar o ensino superior               | `yes` (sim), `no` (não)                                                                                              |
-| `internet`   | Acesso à internet em casa                     | `yes` (sim), `no` (não)                                                                                              |
-| `romantic`   | Está em relacionamento amoroso                | `yes` (sim), `no` (não)                                                                                              |
-| `famrel`     | Relação familiar                              | 1 (muito ruim) a 5 (excelente)                                                                                       |
-| `freetime`   | Tempo livre após a escola                     | 1 (muito pouco) a 5 (muito)                                                                                          |
-| `goout`      | Frequência de saídas com amigos               | 1 (quase nunca) a 5 (frequente)                                                                                      |
-| `Dalc`       | Consumo de álcool durante a semana            | 1 (muito baixo) a 5 (muito alto)                                                                                     |
-| `Walc`       | Consumo de álcool no fim de semana            | 1 (muito baixo) a 5 (muito alto)                                                                                     |
-| `health`     | Estado de saúde atual                         | 1 (muito ruim) a 5 (muito bom)                                                                                       |
-| `absences`   | Faltas escolares                              | 0 a 93                                                                                                               |
-| `G1`, `G2`, `G3` | Notas dos períodos escolares             | 0 a 20 (sendo `G3` a **nota final**, usada como alvo)                                                                |
+| Atributo     | Descrição                                 | Valores Possíveis                                   | Tipo       | Representação pós pre-processamento                                          |
+| ------------ | ----------------------------------------- | --------------------------------------------------- | ---------- |-----------------------------------------------------------------------------|
+| `school`     | Escola                                    | `GP`, `MS`                                          | Categórico | `MS` (1 se MS, 0 se GP)                                                     |
+| `sex`        | Sexo                                      | `F`, `M`                                            | Categórico | `M` (1 se masculino, 0 se feminino)                                         |
+| `age`        | Idade                                     | 15 a 22                                             | Numérico   | Mantido como está                                                           |
+| `address`    | Tipo de endereço                          | `U`, `R`                                            | Categórico | `R` (1 se rural, 0 se urbano)                                               |
+| `famsize`    | Tamanho da família                        | `LE3`, `GT3`                                        | Categórico | `GT3` (1 se >3 membros, 0 se ≤3)                                            |
+| `Pstatus`    | Estado civil dos pais                     | `T`, `A`                                            | Categórico | `A` (1 se separados, 0 se juntos)                                           |
+| `Medu`       | Escolaridade da mãe                       | 0 a 4                                               | Numérico   | Mantido como está                                                           |
+| `Fedu`       | Escolaridade do pai                       | 0 a 4                                               | Numérico   | Mantido como está                                                           |
+| `Mjob`       | Profissão da mãe                          | `teacher`, `health`, `services`, `at_home`, `other` | Categórico | 4 colunas (one-hot sem `at_home`): `health`, `other`, `services`, `teacher` |
+| `Fjob`       | Profissão do pai                          | `teacher`, `health`, `services`, `at_home`, `other` | Categórico | 4 colunas (one-hot sem `at_home`)                                           |
+| `reason`     | Motivo da escolha da escola               | `home`, `reputation`, `course`, `other`             | Categórico | 3 colunas (one-hot sem `course`): `home`, `other`, `reputation`             |
+| `guardian`   | Responsável legal                         | `mother`, `father`, `other`                         | Categórico | 2 colunas (one-hot sem `mother`): `father`, `other`                         |
+| `traveltime` | Tempo de deslocamento casa–escola         | 1 a 4                                               | Numérico   | Mantido como está                                                           |
+| `studytime`  | Tempo semanal de estudo                   | 1 a 4                                               | Numérico   | Mantido como está                                                           |
+| `failures`   | Nº de reprovações anteriores              | 0 a 4                                               | Numérico   | Mantido como está                                                           |
+| `schoolsup`  | Apoio educacional extra                   | `yes`, `no`                                         | Categórico | `yes` (1 se sim, 0 se não)                                                  |
+| `famsup`     | Apoio educacional da família              | `yes`, `no`                                         | Categórico | `yes` (1 se sim, 0 se não)                                                  |
+| `paid`       | Aulas particulares pagas                  | `yes`, `no`                                         | Categórico | `yes` (1 se sim, 0 se não)                                                  |
+| `activities` | Participa de atividades extracurriculares | `yes`, `no`                                         | Categórico | `yes` (1 se sim, 0 se não)                                                  |
+| `nursery`    | Frequentou pré-escola                     | `yes`, `no`                                         | Categórico | `yes` (1 se sim, 0 se não)                                                  |
+| `higher`     | Deseja cursar o ensino superior           | `yes`, `no`                                         | Categórico | `yes` (1 se sim, 0 se não)                                                  |
+| `internet`   | Acesso à internet em casa                 | `yes`, `no`                                         | Categórico | `yes` (1 se sim, 0 se não)                                                  |
+| `romantic`   | Está em relacionamento amoroso            | `yes`, `no`                                         | Categórico | `yes` (1 se sim, 0 se não)                                                  |
+| `famrel`     | Relação familiar                          | 1 a 5                                               | Numérico   | Mantido como está                                                           |
+| `freetime`   | Tempo livre após a escola                 | 1 a 5                                               | Numérico   | Mantido como está                                                           |
+| `goout`      | Frequência de saídas com amigos           | 1 a 5                                               | Numérico   | Mantido como está                                                           |
+| `Dalc`       | Consumo de álcool durante a semana        | 1 a 5                                               | Numérico   | Mantido como está                                                           |
+| `Walc`       | Consumo de álcool no fim de semana        | 1 a 5                                               | Numérico   | Mantido como está                                                           |
+| `health`     | Estado de saúde atual                     | 1 a 5                                               | Numérico   | Mantido como está                                                           |
+| `absences`   | Faltas escolares                          | 0 a 93                                              | Numérico   | Mantido como está                                                           |
+| `G1`, `G2`   | Notas dos períodos anteriores             | 0 a 20                                              | Numérico   | Mantido como está                                                           |
+| `G3`         | Nota final (alvo)                         | 0 a 20                                              | Numérico   | Mantido como está                                                           |
+                                                              |
 
 
 ### 🧪 Dados Fictícios Utilizados nas Predições
