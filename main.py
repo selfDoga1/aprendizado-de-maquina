@@ -97,6 +97,5 @@ for test in models_tests:
 
     summary_data.append(row)
 
-# Gera planilha resumo
 df_summary = pd.DataFrame(summary_data)
 df_summary.to_excel("results/resumo_geral_modelos.xlsx", index=False)

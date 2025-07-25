@@ -38,16 +38,15 @@ dados_ficticios = pd.DataFrame({
     'G2': [14, 11, 16],
 })
 
-caminho_modelos = "models"
-resultados_df = []
+models_folder = "models"
+results_df = []
 
-# Loop pelos arquivos de modelo
-for arquivo in os.listdir(caminho_modelos):
+for file in os.listdir(models_folder):
 
-    if arquivo.endswith(".joblib"):
-        caminho_completo = os.path.join(caminho_modelos, arquivo)
-        model = joblib.load(caminho_completo)
-        model_name = arquivo.replace("_best_model.joblib", "")
+    if file.endswith(".joblib"):
+        file_source = os.path.join(models_folder, file)
+        model = joblib.load(file_source)
+        model_name = file.replace("_best_model.joblib", "")
 
         pred = model.predict(dados_ficticios)
 
@@ -60,9 +59,9 @@ for arquivo in os.listdir(caminho_modelos):
             "G3_pred": np.round(pred)
         })
 
-        resultados_df.append(df_pred)
+        results_df.append(df_pred)
 
-df_final = pd.concat(resultados_df, ignore_index=True)
+df_final = pd.concat(results_df, ignore_index=True)
 df_final.to_excel("results/predicoes_modelos.xlsx", index=False)
 
 print("predicoes finalizadas com sucesso!")
