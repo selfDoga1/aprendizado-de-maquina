@@ -17,39 +17,42 @@ Este projeto tem como objetivo prever a nota final dos estudantes (G3) com base 
 - **Validação**: Repeated K-Fold Cross-Validation (5 folds, 30 repetições).
 - **Otimização de Hiperparâmetros**: `RandomizedSearchCV`.
 
-### Hiperparâmetros Otimizados
+### 🔧 Hiperparâmetros Otimizados
 
-#### Elastic Net
-- `alpha`: 0.0191  
-- `l1_ratio`: 0.7852
+Abaixo estão os hiperparâmetros otimizados para cada modelo, juntamente com uma breve explicação sobre sua função:
 
-#### Lasso Regression
-- `alpha`: 0.0391
+#### 🔹 Elastic Net
+- `alpha`: Controla a intensidade da regularização (quanto maior, mais penalização).
+- `l1_ratio`: Define a proporção entre L1 (Lasso) e L2 (Ridge); 0 = só Ridge, 1 = só Lasso.
 
-#### Ridge Regression
-- `alpha`: 7.0721
+#### 🔹 Lasso Regression
+- `alpha`: Parâmetro de regularização que controla o quanto os coeficientes são reduzidos. Pode zerar variáveis irrelevantes.
 
-#### Random Forest
-- `n_estimators`: 64  
-- `max_depth`: 15  
-- `min_samples_split`: 3  
-- `min_samples_leaf`: 3  
-- `max_features`: None
+#### 🔹 Ridge Regression
+- `alpha`: Também controla a regularização, mas sem zerar variáveis; reduz o impacto de colinearidade.
 
-#### Decision Tree
-- `max_depth`: None  
-- `min_samples_split`: 8  
-- `min_samples_leaf`: 4  
-- `max_features`: None
+#### 🔹 Random Forest
+- `n_estimators`: Número de árvores na floresta. Mais árvores geralmente aumentam a estabilidade.
+- `max_depth`: Profundidade máxima de cada árvore. Controla o nível de detalhamento.
+- `min_samples_split`: Número mínimo de amostras para dividir um nó.
+- `min_samples_leaf`: Número mínimo de amostras em uma folha.
+- `max_features`: Número de atributos considerados em cada divisão. Afeta diversidade entre árvores.
 
-#### SVR
-- `C`: 2.8135  
-- `epsilon`: 0.5968  
-- `kernel`: linear  
-- `degree`: 2  
-- `gamma`: scale
+#### 🔹 Decision Tree
+- `max_depth`: Profundidade máxima da árvore.
+- `min_samples_split`: Mínimo de amostras para que um nó seja dividido.
+- `min_samples_leaf`: Mínimo de amostras em uma folha.
+- `max_features`: Número de atributos avaliados por divisão (None = todos).
 
-## 🏆 Resultados
+#### 🔹 SVR (Support Vector Regression)
+- `C`: Penalidade por erro. Valores altos tentam acertar mais, mas podem overfitar.
+- `epsilon`: Margem de tolerância ao erro. Erros dentro dessa faixa não são penalizados.
+- `kernel`: Tipo de função usada para projetar os dados (ex: linear, rbf).
+- `degree`: Grau do polinômio, se `kernel='poly'`.
+- `gamma`: Define o alcance da influência de um único exemplo. Usado em kernels não-lineares.
+
+
+## 🏆 Comparativo de modelos
 
 | Modelo           | R² Médio | Desvio Padrão | Melhor R² |
 |------------------|----------|----------------|------------|
