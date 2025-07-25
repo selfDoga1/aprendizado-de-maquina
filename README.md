@@ -4,12 +4,24 @@ Este projeto tem como objetivo prever a nota final dos estudantes (G3) com base 
 
 ## 📊 Modelos Utilizados
 
-- **Ridge Regression**
-- **Lasso Regression**
-- **Elastic Net**
-- **Árvore de Decisão**
-- **Random Forest**
-- **Support Vector Regression (SVR)**
+- **Ridge Regression**  
+  Modelo de regressão linear com regularização L2, que reduz o impacto de variáveis colineares, penalizando grandes coeficientes, mas sem zerá-los.
+
+- **Lasso Regression**  
+  Também é um modelo linear, mas com regularização L1, capaz de eliminar variáveis irrelevantes ao zerar seus coeficientes, promovendo seleção automática de atributos.
+
+- **Elastic Net**  
+  Combina os efeitos do Ridge e do Lasso (L1 + L2), equilibrando a regularização e a seleção de variáveis. É útil quando há muitas variáveis correlacionadas.
+
+- **Árvore de Decisão**  
+  Modelo baseado em divisões sucessivas dos dados em ramos, criando uma estrutura semelhante a uma árvore. Simples de interpretar, mas propenso a overfitting.
+
+- **Random Forest**  
+  Conjunto de várias árvores de decisão (modelo de ensemble), onde cada árvore é treinada com uma amostra aleatória dos dados. Resulta em maior robustez e generalização.
+
+- **Support Vector Regression (SVR)**  
+  Modelo que busca encontrar uma função que se mantenha dentro de uma margem de erro (`epsilon`) e usa o conceito de margens e vetores de suporte. É eficaz para dados não lineares e de alta dimensão.
+
 
 ## ⚙️ Metodologia
 
